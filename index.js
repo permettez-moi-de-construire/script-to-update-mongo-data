@@ -70,7 +70,7 @@ client.connect(function (err) {
 
   // collection.updateMany({ _id: { $in: ids } }, { $set: { isDone: true } }, function (err, result) {
   //   assert.strictEqual(err, null)
-  //   assert.strictEqual(40, result.result.n)
+  //   assert.strictEqual(37, result.result.n)
   //   console.log(`:>>Update result :>> `, result)
   //   console.log('Update operations successfully')
   // })
