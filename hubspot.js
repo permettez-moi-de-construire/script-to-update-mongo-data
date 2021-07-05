@@ -15,11 +15,11 @@ const getDeals = async (pipelineId, isNext, after = 0) => {
 
     const hubspot = hubspotClient();
     const result = await hubspot.crm.deals.searchApi.doSearch(publicObjectSearchRequest)
-
+ // Dealstage to exclude : 1189824
     if(result.body.results.length) {
-        console.log('[[ DEAL NAME ]]', result.body.results.map(deal => `'${deal.properties.dealname}'`))
+        console.log('[[ DEAL NAME ]]', result.body.results.filter(deal => deal.properties.dealstage !== "1189824").map(deal => `'${deal.properties.dealname}'`))
 
-        return [...result.body.results , ...(await getDeals(pipelineId, true, after + 10))]
+        return [...result.body.results.filter(deal => deal.properties.dealstage !== "1189824") , ...(await getDeals(pipelineId, true, after + 10))]
     }
 
     return [];
